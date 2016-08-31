@@ -85,6 +85,8 @@ public class StorageFile {
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
 
+        boolean isFileExisting = path.toFile().exists();
+
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
@@ -100,6 +102,10 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        }
+
+        if (!isFileExisting){
+            throw new StorageOperationException("UNEXPECTED BEHAVIOUR: File was deleted but recovered safely.");
         }
     }
 
