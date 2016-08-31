@@ -89,14 +89,14 @@ public class TextUi {
 
 
     public void showWelcomeMessage(String version, String storageFilePath) {
-        String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
+
         showToUser(
                 DIVIDER,
                 DIVIDER,
                 MESSAGE_WELCOME,
                 version,
                 MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
+                Formatter.formatWelcomeMessage(storageFilePath),
                 DIVIDER);
     }
 
@@ -133,11 +133,8 @@ public class TextUi {
      * Private contact details are hidden.
      */
     private void showPersonListView(List<? extends ReadOnlyPerson> persons) {
-        final List<String> formattedPersons = new ArrayList<>();
-        for (ReadOnlyPerson person : persons) {
-            formattedPersons.add(person.getAsTextHidePrivate());
-        }
-        showToUserAsIndexedList(formattedPersons);
+
+        showToUserAsIndexedList( Formatter.formatPersonListView(persons));
     }
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
@@ -163,6 +160,30 @@ public class TextUi {
      */
     private static String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
+    }
+
+}
+
+
+class Formatter{
+
+    /**
+     * Formats and returns the person list view.
+     *
+     * @param persons a list of persons to be formatted before beeing displayed
+     * @return formatted string
+     */
+    public static List<String> formatPersonListView(List<? extends ReadOnlyPerson> persons){
+        final List<String> formattedPersons = new ArrayList<>();
+        for (ReadOnlyPerson person : persons) {
+            formattedPersons.add(person.getAsTextHidePrivate());
+        }
+        return formattedPersons;
+    }
+
+    public static String formatWelcomeMessage(String storageFilePath){
+        String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
+        return storageFileInfo;
     }
 
 }
