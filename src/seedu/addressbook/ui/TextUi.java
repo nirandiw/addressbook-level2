@@ -1,9 +1,6 @@
 package seedu.addressbook.ui;
 
-import static seedu.addressbook.common.Messages.*;
-
 import seedu.addressbook.commands.CommandResult;
-import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.io.InputStream;
@@ -12,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
+import static seedu.addressbook.common.Messages.*;
 
 /**
  * Text UI of the application.
@@ -126,7 +125,7 @@ public class TextUi {
         if(resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        showToUser(result.getFeedbackToUser(), DIVIDER);
     }
 
     /**
