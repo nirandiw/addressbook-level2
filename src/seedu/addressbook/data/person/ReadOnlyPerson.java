@@ -13,6 +13,7 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+    int getSequenceNumber();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -82,4 +83,6 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+
+
 }
