@@ -32,6 +32,7 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+
     }
 
     @Override
@@ -82,6 +83,14 @@ public class Person implements ReadOnlyPerson {
     @Override
     public String toString() {
         return getAsTextShowAll();
+    }
+
+    public String getPrintableString(Printable... printables){
+        String print="";
+        for (Printable value: printables){
+            print.join(",",value.getPrintableString());
+        }
+        return print;
     }
 
 }
