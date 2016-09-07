@@ -29,7 +29,7 @@ public class Person implements ReadOnlyPerson {
 
         setSequenceNumber(nextSequenceNumber);
         increaseNextSequenceNumber();
-        System.out.println(name +" "+sequenceNumber);
+        //System.out.println(name +" "+sequenceNumber);
     }
 
     private void increaseNextSequenceNumber() {
